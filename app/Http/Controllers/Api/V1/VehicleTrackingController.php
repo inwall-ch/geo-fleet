@@ -7,7 +7,6 @@ use App\Domains\Logistics\DTOs\UpdateLocationData;
 use App\Domains\Logistics\Models\Vehicle;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Spatie\LaravelData\Data;
 
 class VehicleTrackingController extends Controller
 {

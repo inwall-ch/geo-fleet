@@ -2,8 +2,8 @@
 
 namespace App\Events;
 
+use App\Domains\Logistics\Models\TrackingPoint;
 use App\Domains\Logistics\Models\Vehicle;
-use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
@@ -36,6 +36,9 @@ class VehicleMoved implements ShouldBroadcast
 
     public function broadcastWith(): array
     {
+        /** @var TrackingPoint|null $latestPoint */
+        $latestPoint = $this->vehicle->trackingPoints()->latest()->first();
+
         return [
             'id' => $this->vehicle->id,
             'name' => $this->vehicle->name,
@@ -43,8 +46,8 @@ class VehicleMoved implements ShouldBroadcast
                 'lat' => $this->vehicle->current_location->latitude,
                 'lng' => $this->vehicle->current_location->longitude,
             ],
-            'speed' => $this->vehicle->trackingPoints()->latest()->first()?->speed ?? 0,
-            'heading' => $this->vehicle->trackingPoints()->latest()->first()?->heading ?? 0,
+            'speed' => $latestPoint ? $latestPoint->speed : 0,
+            'heading' => $latestPoint ? $latestPoint->heading : 0,
             'status' => $this->vehicle->status->value,
         ];
     }

@@ -14,7 +14,7 @@ it('updates vehicle location and logs tracking point', function () {
     // Arrange
     Redis::shouldReceive('geoAdd')
         ->once()
-        ->with('geofleet:vehicles', 10.0, 20.0, \Mockery::type('int'));
+        ->with('geofleet:vehicles', 10.0, 20.0, \Mockery::type('string'));
 
     $vehicle = Vehicle::factory()->create([
         'status' => VehicleStatus::IDLE,

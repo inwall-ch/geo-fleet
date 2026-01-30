@@ -24,7 +24,7 @@ test('it updates vehicle location and broadcasts event', function () {
     $response = $this->postJson("/api/vehicles/{$vehicle->id}/location", $payload);
 
     $response->assertOk();
-    
+
     $this->assertDatabaseHas('tracking_points', [
         'vehicle_id' => $vehicle->id,
         'speed' => 60.5,
