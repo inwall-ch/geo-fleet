@@ -9,6 +9,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use MatanYadaev\EloquentSpatial\Objects\Point;
 use MatanYadaev\EloquentSpatial\Traits\HasSpatial;
 
+/**
+ * @property int $id
+ * @property int $vehicle_id
+ * @property Point $location
+ * @property float $speed
+ * @property float $heading
+ * @property \Illuminate\Support\Carbon $created_at
+ */
 class TrackingPoint extends Model
 {
     use HasFactory;
