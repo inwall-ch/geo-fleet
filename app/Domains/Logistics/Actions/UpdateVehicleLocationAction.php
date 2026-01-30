@@ -31,7 +31,7 @@ class UpdateVehicleLocationAction
             ]);
 
             // Update Redis Geo
-            Redis::geoAdd('geofleet:vehicles', $data->longitude, $data->latitude, $vehicle->id);
+            Redis::geoAdd('geofleet:vehicles', $data->longitude, $data->latitude, strval($vehicle->id));
 
             return $vehicle;
         });

@@ -28,7 +28,7 @@ it('updates vehicle location and logs tracking point', function () {
         heading: 180.0
     );
 
-    $action = new UpdateVehicleLocationAction();
+    $action = new UpdateVehicleLocationAction;
 
     // Act
     $updatedVehicle = $action->execute($vehicle, $data);
