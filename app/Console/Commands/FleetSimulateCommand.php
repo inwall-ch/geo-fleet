@@ -14,7 +14,7 @@ class FleetSimulateCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'fleet:simulate';
+    protected $signature = 'fleet:simulate {--cycles= : Number of cycles to run (optional)}';
 
     /**
      * The console command description.
@@ -39,7 +39,14 @@ class FleetSimulateCommand extends Command
             return;
         }
 
+        $cycles = $this->option('cycles') ? (int) $this->option('cycles') : null;
+        $currentCycle = 0;
+
         while (true) {
+            if ($cycles !== null && $currentCycle >= $cycles) {
+                $this->info('Simulation finished.');
+                break;
+            }
             foreach ($vehicles as $vehicle) {
                 $currentLat = $vehicle->current_location->latitude;
                 $currentLng = $vehicle->current_location->longitude;
@@ -70,6 +77,7 @@ class FleetSimulateCommand extends Command
 
             $this->info('--- Cycle Complete. Sleeping for 1 second ---');
             sleep(1);
+            $currentCycle++;
         }
     }
 }
