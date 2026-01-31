@@ -2,8 +2,6 @@ includes:
     - vendor/larastan/larastan/extension.neon
 
 parameters:
-    ignoreErrors:
-        - '#While loop condition is always true#'
 
     paths:
         - app/
