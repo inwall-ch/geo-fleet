@@ -4,8 +4,8 @@ namespace App\Events;
 
 use App\Domains\Logistics\Models\TrackingPoint;
 use App\Domains\Logistics\Models\Vehicle;
+use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
@@ -30,7 +30,7 @@ class VehicleMoved implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new PresenceChannel('presence-global-map'),
+            new Channel('global-map'),
         ];
     }
 

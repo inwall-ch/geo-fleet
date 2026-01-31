@@ -17,21 +17,18 @@ class UpdateVehicleLocationAction
         $point = new Point($data->latitude, $data->longitude, 4326);
 
         $vehicle = DB::transaction(function () use ($vehicle, $data, $point) {
-            // Update Vehicle
             $vehicle->update([
                 'current_location' => $point,
                 'status' => $data->speed > 0 ? VehicleStatus::MOVING : VehicleStatus::IDLE,
                 'last_seen_at' => now(),
             ]);
 
-            // Log Tracking Point
             $vehicle->trackingPoints()->create([
                 'location' => $point,
                 'speed' => $data->speed,
                 'heading' => $data->heading,
             ]);
 
-            // Update Redis Geo
             Redis::geoAdd('geofleet:vehicles', $data->longitude, $data->latitude, strval($vehicle->id));
 
             return $vehicle;

@@ -1,59 +1,154 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# GeoFleet
+[![PHP Version](https://img.shields.io/badge/PHP-8.5-4169E1.svg?style=flat&logo=php&logoColor=white)](https://php.net)
+[![Laravel](https://img.shields.io/badge/Laravel-12.x-4169E1.svg?style=flat&logo=laravel&logoColor=white)](https://laravel.com)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1.svg?style=flat&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![PostGIS](https://img.shields.io/badge/PostGIS-3.4-4169E1.svg?style=flat&logo=postgresql&logoColor=white)](https://postgis.net/)
+[![Redis](https://img.shields.io/badge/Redis-7.x-4169E1.svg?style=flat&logo=redis&logoColor=white)](https://redis.io/)
+[![Reverb](https://img.shields.io/badge/Laravel%20Reverb-WebSocket-4169E1)](https://laravel.com/docs/reverb)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Real-time Logistics Tracking System & Geospatial API.**
 
-## About Laravel
+GeoFleet is an advanced vehicle tracking platform designed to handle high-velocity geospatial data. It enables real-time visualization of fleet movements, historical path tracking, and efficient proximity searches using industry-standard GIS technologies.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🚀 Key Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+*   🌍 **Advanced Geospatial Data**
+    Leverages **PostgreSQL + PostGIS** to store precise vehicle locations (`GEOGRAPHY` type). Supports complex spatial queries like "Find vehicles within 5km radius" (`ST_DWithin`) and accurate distance calculations on the earth's spheroid (`ST_Distance`).
 
-## Learning Laravel
+*   📡 **Real-time Updates (WebSockets)**
+    Uses **Laravel Reverb** (WebSocket Server) to broadcast vehicle movements instantly to the frontend map. No polling required - data is pushed as soon as it changes.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+*   ⚡ **High-Performance Caching**
+    Implements **Redis Geo** to index vehicle positions in memory. This allows for lightning-fast spatial lookups and reduces load on the primary database during high-frequency location updates.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+*   🏗️ **Modular Monolith**
+    Architected using **Domain-Driven Design (DDD)** principles. The codebase is organized into a dedicated `Logistics` domain (`app/Domains/Logistics`) with segregated DTOs, Actions, and Models for better maintainability and scalability.
 
-## Laravel Sponsors
+*   🗺️ **Live Visualization**
+    Includes a reactive frontend dashboard built with **Leaflet.js** and **Laravel Echo**, visualizing vehicle movements on an interactive map in real-time.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## 🛠 Tech Stack
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+| Component | Technology | Description |
+| :--- | :--- | :--- |
+| **Framework** | ![Laravel](https://img.shields.io/badge/-Laravel%2012-FF2D20?style=flat-square&logo=laravel&logoColor=white) | Core application framework. |
+| **Language** | ![PHP](https://img.shields.io/badge/-PHP%208.5-777BB4?style=flat-square&logo=php&logoColor=white) | Modern PHP with robust typing. |
+| **Database** | ![Postgres](https://img.shields.io/badge/-PostGIS-4169E1?style=flat-square&logo=postgresql&logoColor=white) | Spatial database for `GEOGRAPHY` data types. |
+| **Real-time** | ![Reverb](https://img.shields.io/badge/-Reverb-FF2D20?style=flat-square&logo=laravel&logoColor=white) | First-party Laravel WebSocket server. |
+| **Cache** | ![Redis](https://img.shields.io/badge/-Redis-DC382D?style=flat-square&logo=redis&logoColor=white) | Redis Geo for in-memory spatial indexing. |
+| **Frontend** | ![Leaflet](https://img.shields.io/badge/-Leaflet.js-199900?style=flat-square&logo=leaflet&logoColor=white) | Open-source JavaScript library for mobile-friendly interactive maps. |
+| **Testing** | ![Pest](https://img.shields.io/badge/-Pest-4f5b93?style=flat-square&logo=pest&logoColor=white) | Elegant testing framework. |
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 📖 Architecture Flow
 
-## Code of Conduct
+The following diagram illustrates how a vehicle location update propagates through the system.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```mermaid
+sequenceDiagram
+    participant Driver/Sim
+    participant API as VehicleTrackingController
+    participant Action as UpdateVehicleLocationAction
+    participant DB as PostGIS
+    participant Redis as Redis Geo
+    participant Socket as Reverb Server
+    participant Client as Frontend Map
 
-## Security Vulnerabilities
+    Driver/Sim->>API: POST /api/vehicles/{id}/location
+    API->>Action: Execute(UpdateLocationData)
+    Action->>DB: UPDATE vehicles SET current_location = ...
+    Action->>DB: INSERT INTO tracking_points ...
+    Action->>Redis: GEOADD geofleet:vehicles ...
+    Action->>Socket: Dispatch VehicleMoved Event
+    Socket-->>Client: Push Event (via WebSocket)
+    Client->>Client: Update Marker Position
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## 🔌 API Reference
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 1. Update Vehicle Location
+Updates coordinates for a specific vehicle and logs the history.
+
+- **Endpoint:** `POST /api/vehicles/{vehicle}/location`
+- **Content-Type:** `application/json`
+
+#### Request
+```json
+{
+  "latitude": 45.0355,
+  "longitude": 38.9753,
+  "speed": 65.5,
+  "heading": 180.0
+}
+```
+
+### 2. Find Nearby Vehicles
+Finds all vehicles within a specified radius using PostGIS `ST_DWithin`.
+
+- **Endpoint:** `GET /api/vehicles/nearby`
+- **Query Params:** `latitude`, `longitude`, `radius` (in meters)
+
+#### Response
+```json
+[
+  {
+    "id": 1,
+    "name": "Volvo FH16",
+    "distance": 150.5  // Distance in meters from search point
+  }
+]
+```
+
+---
+
+## ⚡ Quick Start & Demo
+
+You can easily run the entire project, including the simulation, using Laravel Sail (Docker).
+
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/web-inwall/geo-fleet.git
+    cd geo-fleet
+    ```
+
+2.  **Start the environment**
+    ```bash
+    cp .env.example .env
+    ./vendor/bin/sail up -d
+    ```
+
+3.  **Setup Database & Seed**
+    This creates 20 simulated vehicles around Krasnodar.
+    ```bash
+    ./vendor/bin/sail artisan migrate:fresh --seed
+    ```
+
+4.  **Start Reverb Server**
+    Required for real-time updates.
+    ```bash
+    ./vendor/bin/sail artisan reverb:start
+    ```
+
+5.  **Run the Simulation**
+    Open `http://localhost/map` in your browser, then run this command to start moving vehicles:
+    ```bash
+    ./vendor/bin/sail artisan fleet:simulate
+    ```
+
+---
+
+## 🧪 Testing
+
+The project includes a comprehensive test suite covering Unit (Domain Logic) and Feature (API & DB Integration) tests.
+
+```bash
+# Run all tests
+./vendor/bin/sail test
+```
