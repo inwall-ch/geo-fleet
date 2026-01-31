@@ -14,7 +14,7 @@ class FleetSimulateCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'fleet:simulate';
+    protected $signature = 'fleet:simulate {--cycles= : Number of cycles to run (optional)}';
 
     /**
      * The console command description.
@@ -32,6 +32,8 @@ class FleetSimulateCommand extends Command
         $this->info('Press Ctrl+C to stop.');
 
         $vehicles = Vehicle::all();
+        $cycles = $this->option('cycles') ? (int) $this->option('cycles') : null;
+        $currentCycle = 0;
 
         if ($vehicles->isEmpty()) {
             $this->error('No vehicles found. Run db:seed first!');
@@ -40,6 +42,11 @@ class FleetSimulateCommand extends Command
         }
 
         while (true) {
+            if ($cycles !== null && $currentCycle >= $cycles) {
+                $this->info('Simulation finished.');
+                break;
+            }
+
             foreach ($vehicles as $vehicle) {
                 $currentLat = $vehicle->current_location->latitude;
                 $currentLng = $vehicle->current_location->longitude;
@@ -70,6 +77,7 @@ class FleetSimulateCommand extends Command
 
             $this->info('--- Cycle Complete. Sleeping for 1 second ---');
             sleep(1);
+            $currentCycle++;
         }
     }
 }
