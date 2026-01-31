@@ -1,5 +1,10 @@
 # GeoFleet
-[![PHP Version](https://img.shields.io/badge/PHP-8.5-4169E1.svg?style=flat&logo=php&logoColor=white)](https://php.net)
+
+https://github.com/user-attachments/assets/6cdc29d5-a36b-4c73-b329-a0e0143ecd39
+
+![render1769883733002](https://github.com/user-attachments/assets/dbaf263b-734a-4076-8bc1-33edea1d5bbe)
+
+[![PHP Version](https://img.shields.io/badge/PHP-8.5+-4169E1.svg?style=flat&logo=php&logoColor=white)](https://php.net)
 [![Laravel](https://img.shields.io/badge/Laravel-12.x-4169E1.svg?style=flat&logo=laravel&logoColor=white)](https://laravel.com)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1.svg?style=flat&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 [![PostGIS](https://img.shields.io/badge/PostGIS-3.4-4169E1.svg?style=flat&logo=postgresql&logoColor=white)](https://postgis.net/)
@@ -36,7 +41,7 @@ GeoFleet is an advanced vehicle tracking platform designed to handle high-veloci
 | Component | Technology | Description |
 | :--- | :--- | :--- |
 | **Framework** | ![Laravel](https://img.shields.io/badge/-Laravel%2012-FF2D20?style=flat-square&logo=laravel&logoColor=white) | Core application framework. |
-| **Language** | ![PHP](https://img.shields.io/badge/-PHP%208.5-777BB4?style=flat-square&logo=php&logoColor=white) | Modern PHP with robust typing. |
+| **Language** | ![PHP](https://img.shields.io/badge/-PHP%208.2-777BB4?style=flat-square&logo=php&logoColor=white) | Modern PHP with robust typing. |
 | **Database** | ![Postgres](https://img.shields.io/badge/-PostGIS-4169E1?style=flat-square&logo=postgresql&logoColor=white) | Spatial database for `GEOGRAPHY` data types. |
 | **Real-time** | ![Reverb](https://img.shields.io/badge/-Reverb-FF2D20?style=flat-square&logo=laravel&logoColor=white) | First-party Laravel WebSocket server. |
 | **Cache** | ![Redis](https://img.shields.io/badge/-Redis-DC382D?style=flat-square&logo=redis&logoColor=white) | Redis Geo for in-memory spatial indexing. |
